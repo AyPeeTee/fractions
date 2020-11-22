@@ -22,26 +22,60 @@ public class Fraction implements IFraction {
 
     @Override
     public IFraction plus(IFraction other) {
-        throw new UnsupportedOperationException();
-    }
+        int numerator1 = getNumerator();
+        int denominator1 = getDenominator();
+        int numerator2 = other.getNumerator();
+        int denominator2 = other.getDenominator();
 
+        int denominatorRes = denominator1 * denominator2;
+        int numeratorRes = (numerator1 * denominator2) + (numerator2 * denominator1);
+
+        return createNormalised(numeratorRes, denominatorRes);
+    }
     @Override
     public IFraction minus(IFraction other) {
-        throw new UnsupportedOperationException();
+        int numerator1 = getNumerator();
+        int denominator1 = getDenominator();
+        int numerator2 = other.getNumerator();
+        int denominator2 = other.getDenominator();
+
+        int denominatorRes = denominator1 * denominator2;
+        int numeratorRes = (numerator1 * denominator2) - (numerator2 * denominator1);
+
+        return createNormalised(numeratorRes, denominatorRes);
     }
 
     @Override
     public IFraction times(IFraction other) {
-        throw new UnsupportedOperationException();
+        int numerator1 = getNumerator();
+        int denominator1 = getDenominator();
+        int numerator2 = other.getNumerator();
+        int denominator2 = other.getDenominator();
+
+        int denominatorRes = denominator1 * denominator2;
+        int numeratorRes = numerator1 * numerator2;
+
+        return createNormalised(numeratorRes, denominatorRes);
     }
 
     @Override
     public IFraction dividedBy(IFraction other) {
-        throw new UnsupportedOperationException();
+        int numerator1 = getNumerator();
+        int denominator1 = getDenominator();
+        int numerator2 = other.getNumerator();
+        int denominator2 = other.getDenominator();
+
+        int denominatorRes = denominator1 * denominator2;
+        int numeratorRes = numerator1 * numerator2;
+
+        return createNormalised(denominatorRes, numeratorRes);
     }
 
     public static Fraction createNormalised(Integer numerator, Integer denominator) {
-        throw new UnsupportedOperationException();
+        int gcd = findGreatestCommonDenominator(numerator, denominator);
+        int numeratorRes = numerator / gcd;
+        int denumeratorRes = denominator / gcd;
+        return new Fraction(numeratorRes, denumeratorRes);
     }
 
     /**
